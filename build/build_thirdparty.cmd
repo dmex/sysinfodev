@@ -38,27 +38,27 @@ if exist "tools\thirdparty\obj" (
 
 echo:
 
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x86 -verbosity:normal -terminalLogger:"%TLG%"
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x86 -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x86 -verbosity:normal -terminalLogger:"%TLG%"
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x86 -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x64 -verbosity:normal -terminalLogger:"%TLG%"
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x64 -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x64 -verbosity:normal -terminalLogger:"%TLG%"
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x64 -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=ARM64 -verbosity:normal -terminalLogger:"%TLG%"
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=ARM64 -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=ARM64 -verbosity:normal -terminalLogger:"%TLG%"
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=ARM64 -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 
 :end
