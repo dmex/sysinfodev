@@ -2,6 +2,18 @@
 @setlocal enableextensions
 @cd /d "%~dp0\..\"
 
+REM Check if an argument is provided and if it is "INIT"
+set "IS_INIT=false"
+if "%1"=="INIT" (
+    set "IS_INIT=true"
+)
+
+REM Check if terminal logging is provided by continuous integration
+set "TLG=auto"
+if "%GITHUB_ACTIONS%"=="true" (
+    set "TLG=off"
+)
+
 for /f "usebackq tokens=*" %%a in (`call "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -prerelease -products * -requires Microsoft.Component.MSBuild -property installationPath`) do (
    set "VSINSTALLPATH=%%a"
 )
@@ -26,40 +38,34 @@ if exist "tools\thirdparty\obj" (
 
 echo:
 
-REM echo Building thirdparty (Debug-x86)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x86 -terminalLogger:auto
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x86 -verbosity:normal -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-REM echo Building thirdparty (Release-x86)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x86 -terminalLogger:auto
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x86 -verbosity:normal -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-REM echo Building thirdparty (Debug-x64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x64 -terminalLogger:auto
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x64 -verbosity:normal -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-REM echo Building thirdparty (Release-x64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x64 -terminalLogger:auto
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x64 -verbosity:normal -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-REM echo Building thirdparty (Debug-ARM64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=ARM64 -terminalLogger:auto
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=ARM64 -verbosity:normal -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
-REM echo Building thirdparty (Release-ARM64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=ARM64 -terminalLogger:auto
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=ARM64 -verbosity:normal -terminalLogger:"%TLG%"
 if %ERRORLEVEL% neq 0 goto end
 
 :end
 
 REM If IS_INIT is not provided, print a message and exit
-if "%1"=="INIT" (
-exit /b 0
-) else (
+if "%IS_INIT%"=="false" (
 pause
+) else (
+exit /b 0
 )
