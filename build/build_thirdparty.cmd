@@ -27,32 +27,32 @@ if exist "tools\thirdparty\obj" (
 echo:
 
 REM echo Building thirdparty (Debug-x86)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x86 -terminalLogger
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x86 -terminalLogger:auto
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
 REM echo Building thirdparty (Release-x86)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x86 -terminalLogger
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x86 -terminalLogger:auto
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
 REM echo Building thirdparty (Debug-x64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x64 -terminalLogger
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=x64 -terminalLogger:auto
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
 REM echo Building thirdparty (Release-x64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x64 -terminalLogger
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=x64 -terminalLogger:auto
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
 REM echo Building thirdparty (Debug-ARM64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=ARM64 -terminalLogger
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Debug -property:Platform=ARM64 -terminalLogger:auto
 if %ERRORLEVEL% neq 0 goto end
 echo:
 
 REM echo Building thirdparty (Release-ARM64)...
-msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=ARM64 -terminalLogger
+msbuild /m tools\thirdparty\thirdparty.sln -property:Configuration=Release -property:Platform=ARM64 -terminalLogger:auto
 if %ERRORLEVEL% neq 0 goto end
 
 :end
