@@ -10,7 +10,9 @@ on:
 
 permissions:
   contents: read
-
+  id-token: write
+  attestations: write
+  
 jobs:
   build:
     runs-on: windows-latest
@@ -26,6 +28,10 @@ jobs:
       shell: cmd
       working-directory: ${{github.workspace}}
       run: build\build_verbose.cmd
+    - uses: actions/attest-build-provenance@v2
+      with: 
+        subject-path: 'bin\Debug64\SystemInformer.exe'
+  
   build_driver:
     runs-on: windows-latest
     steps:
